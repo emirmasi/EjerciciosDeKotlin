@@ -1,5 +1,7 @@
 package com.practica.ejercicioskotlin.Ejercicios.Matematicos
 
+import kotlin.system.measureTimeMillis
+
 /*
  * Escribe un programa que imprima los 50 primeros números de la sucesión
  * de Fibonacci empezando en 0.
@@ -44,7 +46,7 @@ curiosidad matemática con su habitual pasión contagiosa :)]
 
 fun tribonacci(signature: DoubleArray, n: Int): DoubleArray {
     // Your code here
-    if(n ==0) return doubleArrayOf()
+    if(n == 0) return doubleArrayOf()
 
     if(n <= signature.size){
         var nuevoArray = DoubleArray(n)
@@ -69,8 +71,40 @@ fun tribonacci(signature: DoubleArray, n: Int): DoubleArray {
     }
     return result
 }
+fun tribonacciOptimizado(signature: DoubleArray,n : Int): DoubleArray{
+    var result = DoubleArray(n)
+    return  when(n){
+        0-> return doubleArrayOf()
+        1,2->{
+            ///aca tengo que reducir tamaño
+            return if(n == 1){
+                doubleArrayOf(signature[n-1])
+            }else{
+                doubleArrayOf(signature[0],signature[1])
+            }
+        }
+        3->return signature
+        else->{
+            result.set(0,signature[0])
+            result.set(1,signature[1])
+            result.set(2,signature[2])
+            var j = 0
+            for(i in 3 until n){
+                val fib = result[j] + result[j+1] + result[j+2]
+                result[i] = fib
+                j++
+            }
+            return result
+        }
+    }
+}
 ///calculamos la optimizacion
 fun main(){
     ///
+    val tribonaccioComun = measureTimeMillis { tribonacci(doubleArrayOf(0.0,1.0,1.0),5) }
 
+    val tribonaccioOptimizado = measureTimeMillis { tribonacci(doubleArrayOf(0.0,1.0,1.0),5) }
+
+    println("tribonacci comun: $tribonaccioComun")
+    println("tribonacci optimizado: $tribonaccioOptimizado")
 }

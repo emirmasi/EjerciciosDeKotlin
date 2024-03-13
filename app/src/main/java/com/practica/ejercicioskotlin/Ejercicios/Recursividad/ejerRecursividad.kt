@@ -9,14 +9,6 @@ fun fiboRecur(
 }
 
 
-
-fun main(){
-    /*val texto = "anita lava la tina "
-    println("el texto $texto  ${if(esPalindromo(texto)) "palindromo" else "no es palindromo"}")*/
-    val numeroAmnstrong  = 370
-    println("$numeroAmnstrong es ${if (esNumeroAmstrong(numeroAmnstrong)) "amstrong " else "no es amnstrong"}")
-}
-
 fun factorialRecursivo(n : Int):Int{
     return if(n == 0){
         1
