@@ -11,9 +11,9 @@ Los números romanos modernos se escriben expresando cada dígito decimal del n�
 fun decode(str : String):Int{
     val tamStr = str.length
 
-    when(tamStr){
-        0->return 0
-        1-> return symbol(str[0])
+    return when(tamStr){
+        0-> 0
+        1-> symbol(str[0])
         else->{
             var i = tamStr-1
             var result = symbol(str[i])
@@ -30,7 +30,7 @@ fun decode(str : String):Int{
                 prevValue = act
                 i--
             }
-            return result
+             result
         }
     }
 

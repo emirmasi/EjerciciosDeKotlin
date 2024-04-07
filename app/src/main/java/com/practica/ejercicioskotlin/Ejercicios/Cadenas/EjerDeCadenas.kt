@@ -1,5 +1,6 @@
 package com.practica.habitos.Ejercicios
 
+import java.util.Locale
 import kotlin.math.abs
 
 /*1)
@@ -71,8 +72,8 @@ fun esAnagramaOptimizado(
     if(primeraPalabra.isEmpty() || segundaPalabra.isEmpty()) return false
 
     ///luego para que no diferenciemos entre mayus o minus , lo pasamos ambos a minus
-    val priPalaToLower = primeraPalabra.toLowerCase()
-    val segPalabraToLoew = segundaPalabra.toLowerCase()
+    val priPalaToLower = primeraPalabra.lowercase(Locale.getDefault())
+    val segPalabraToLoew = segundaPalabra.lowercase(Locale.ROOT)
 
     ///creamos un map que vaya contado la cantida de caracteres que hay en la primera palabra
     val contadorDeCaracteres  = mutableMapOf<Char,Int>()
@@ -85,7 +86,7 @@ fun esAnagramaOptimizado(
     for(letra in segPalabraToLoew){
         contadorDeCaracteres[letra] = contadorDeCaracteres.getOrDefault(letra,0)-1
     }
-    ///recorremos todo el map de y si estan todas en 0 significa que es un anagrama
+    ///recorremos
     return contadorDeCaracteres.all{
         it.value == 0
     }
@@ -128,7 +129,7 @@ fun contadorDePalabras(texto:String, palabra:String):Int{
         var j = 0
         var esRepetida = true
         while (j<tamPalabra && esRepetida){
-            if (texto[i+j].toLowerCase() != palabra[j].toLowerCase())
+            if (texto[i+j].lowercaseChar() != palabra[j].lowercaseChar())
                 esRepetida = false
             j++
         }
@@ -340,7 +341,6 @@ fun main(){
 }
 
 /*Dado un conjunto de números, devuelve el inverso aditivo de cada uno.
-Todo lo positivo se vuelve negativo y lo negativo se vuelve positivo.
 
 invertir([1,2,3,4,5]) == [-1,-2,-3,-4,-5]
 invertir([1,-2,3,-4,5]) == [-1,2,-3,4,-5]

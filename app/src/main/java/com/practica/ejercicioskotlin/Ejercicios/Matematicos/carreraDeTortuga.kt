@@ -42,4 +42,5 @@ fun race(v1:Int, v2:Int, g:Int):IntArray {
 
 fun main(){
     val result = race(720,850,70)
+    println(result)
 }

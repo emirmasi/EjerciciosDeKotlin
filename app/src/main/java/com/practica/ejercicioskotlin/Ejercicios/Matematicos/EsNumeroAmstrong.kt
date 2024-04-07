@@ -16,6 +16,9 @@ fun esNumeroAmstrong(num: Int):Boolean{
     return acum == num
 }
 
-fun exponente(resto: Int, cantDigitos: Int): Int {
-    return 0
+fun exponente(base: Int, exponente: Int): Int {
+    val resultado = Math.pow(base.toDouble(), exponente.toDouble()).toInt()
+
+    // Retorna el resultado
+    return resultado
 }

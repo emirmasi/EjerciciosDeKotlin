@@ -62,47 +62,53 @@ object StockList {
 fun calcularAreaPoligono(poligono : Poligono):Float{
     return poligono.calcularArea()
 }
-abstract class Poligono///puede ser una interface tranquilamente
+interface Poligono///puede ser una interface tranquilamente
 {
-    abstract fun calcularArea():Float
+     fun calcularArea(): Float
 }
 
 class Triangulo(
     private val a:Float,
     private val b:Float,
     private val c:Float
-) : Poligono()
+)
 {
     fun esValido():Boolean{
-        if(a+b>c)
-            if(b+c>a)
-                if(a + c >b)
-                    return true
-        return false
+        return a + b > c && b + c > a && a + c > b
     }
-    override fun calcularArea(): Float {
-        val semiperimetro = (a+b+c)/2
-        ///calcular el area de un triangulo
-        return sqrt((semiperimetro)*(semiperimetro-a)*(semiperimetro-b)*(semiperimetro-c))
+    val poligono = object : Poligono{
+        override fun calcularArea(): Float {
+            val semiperimetro = (a+b+c)/2
+            ///calcular el area de un triangulo
+            return sqrt((semiperimetro)*(semiperimetro-a)*(semiperimetro-b)*(semiperimetro-c))
+        }
     }
+
 
 }
 class Cuadrado(
     private val lado:Float
-) : Poligono()
+)
 {
-    override fun calcularArea(): Float {
-        return lado.times(lado)
+    val poligono = object : Poligono{
+        override fun calcularArea(): Float {
+            return lado.times(lado)
+        }
     }
+
 
 }
 class Rectangulo(
     private val base : Float,
     private val altura: Float
-) : Poligono()
+)
 {
-    override fun calcularArea(): Float {
-        return base.times(altura)
+    val poligono = object : Poligono {
+        override fun calcularArea(): Float {
+            // Código para calcular el área
+            return base.times(altura)
+        }
     }
+
 
 }

@@ -58,9 +58,9 @@ fun tribonacci(signature: DoubleArray, n: Int): DoubleArray {
 ///lo puedo mejorar este ejercicio
     val result : DoubleArray = DoubleArray(n)
     ///aca ya el resultado tiene la firma
-    result.set(0,signature[0])
-    result.set(1,signature[1])
-    result.set(2,signature[2])
+    result[0] = signature[0]
+    result[1] = signature[1]
+    result[2] = signature[2]
     var i = n - signature.size
     var j = 0
     while ( i > 0){
@@ -73,28 +73,29 @@ fun tribonacci(signature: DoubleArray, n: Int): DoubleArray {
 }
 fun tribonacciOptimizado(signature: DoubleArray,n : Int): DoubleArray{
     var result = DoubleArray(n)
+
     return  when(n){
         0-> return doubleArrayOf()
         1,2->{
             ///aca tengo que reducir tamaño
-            return if(n == 1){
+            if(n == 1){
                 doubleArrayOf(signature[n-1])
             }else{
                 doubleArrayOf(signature[0],signature[1])
             }
         }
-        3->return signature
+        3-> signature
         else->{
-            result.set(0,signature[0])
-            result.set(1,signature[1])
-            result.set(2,signature[2])
+            result[0] = signature[0]
+            result[1] = signature[1]
+            result[2] = signature[2]
             var j = 0
             for(i in 3 until n){
                 val fib = result[j] + result[j+1] + result[j+2]
                 result[i] = fib
                 j++
             }
-            return result
+            result
         }
     }
 }

@@ -25,8 +25,8 @@ fun incrementString(str: String) : String {
     val string = texto[0]
     val cantDigitos = texto[1].length
 
-    if(cantDigitos == 0)
-        return string + "1"
+    return if(cantDigitos == 0)
+         string + "1"
     else{
         /////tengo que verificar los 0 a a las izquierda
         val numeroIncrementado = texto[1].toInt() + 1 ///cuando lo pasamos a int los ceros desaparece ej 0001 = 1
@@ -39,6 +39,6 @@ fun incrementString(str: String) : String {
 
         }
         numeroStr += numeroIncrementado.toString()
-        return string + numeroStr
+        string + numeroStr
     }
 }
